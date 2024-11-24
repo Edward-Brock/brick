@@ -15,11 +15,13 @@
   "dependencies": {
     "@nuxt/eslint": "^0.7.1",
     "@nuxt/ui": "^2.19.2",
+    "@prisma/client": "^5.22.0",
     "nuxt": "^3.14.1592",
     "vue": "latest",
     "vue-router": "latest"
   },
   "devDependencies": {
+    "prisma": "^5.22.0",
     "typescript": "^5.6.3"
   }
 }
