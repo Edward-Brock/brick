@@ -19,7 +19,8 @@
     "@sidebase/nuxt-auth": "^0.9.4",
     "nuxt": "^3.14.1592",
     "vue": "latest",
-    "vue-router": "latest"
+    "vue-router": "latest",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "prisma": "^5.22.0",
