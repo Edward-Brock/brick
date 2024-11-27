@@ -13,6 +13,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// 用户性别
 enum UserGender {
   MALE
   FEMALE
@@ -20,6 +21,7 @@ enum UserGender {
   UNKNOWN
 }
 
+// 用户状态
 enum UserStatus {
   ACTIVE
   BANNED
@@ -28,7 +30,7 @@ enum UserStatus {
 }
 
 model User {
-  id        BigInt     @id @default(autoincrement())
+  id        String     @id @default(cuid())
   username  String     @unique @db.VarChar(32)
   nickname  String     @db.VarChar(100)
   password  String
