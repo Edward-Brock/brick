@@ -2,21 +2,23 @@ import { z } from 'zod'
 import bcrypt from 'bcrypt'
 import prisma from '~/lib/prisma'
 
+const credentialsSchema = z.object({
+  nickname: z.string()
+    .trim()
+    .min(1, '昵称必须至少有1个字符')
+    .max(100, '昵称不得超过100个字符'),
+  username: z.string()
+    .trim()
+    .min(4, '用户名必须至少有4个字符')
+    .max(32, '用户名不得超过32个字符'),
+  password: z.string()
+    .trim()
+    .min(6, '密码必须至少有6个字符')
+    .max(64, '密码不得超过64个字符'),
+})
+
 export default defineEventHandler(async (event) => {
-  const result = z.object({
-    nickname: z.string()
-      .trim()
-      .min(1, '昵称必须至少有1个字符')
-      .max(100, '昵称不得超过100个字符'),
-    username: z.string()
-      .trim()
-      .min(4, '用户名必须至少有4个字符')
-      .max(32, '用户名不得超过32个字符'),
-    password: z.string()
-      .trim()
-      .min(6, '密码必须至少有6个字符')
-      .max(64, '密码不得超过64个字符'),
-  }).safeParse(await readBody(event))
+  const result = credentialsSchema.safeParse(await readBody(event))
 
   // 判断数据校验是否通过
   if (!result.success) {
